@@ -5,7 +5,7 @@ import seaborn as sns
 import re
 
 # Streamlit App Title
-st.title("📊 Gender Gap Analysis in Kenya’s Tech Industry")
+st.title(" Gender Gap Analysis in Kenya’s Tech Industry")
 
 # Load dataset
 file_path = "Kenya_Data_Professionals_Compensation_data.xlsx"
@@ -40,10 +40,8 @@ df_cleaned = df_cleaned.dropna(subset=["Salary"])
 # Standardize gender labels
 df_cleaned["Gender"] = df_cleaned["Gender"].str.strip().str.capitalize()
 
-# --- Salary Gap Analysis ---
-st.subheader("💰 Salary Gap Analysis")
-
-# Ensure at least one male and one female record exists
+# Salary Gap Analysis
+st.subheader(" Salary Gap Analysis")
 if "Male" in df_cleaned["Gender"].unique() and "Female" in df_cleaned["Gender"].unique():
     salary_gap = df_cleaned.groupby("Gender")["Salary"].mean()
 
@@ -65,7 +63,7 @@ if "Male" in df_cleaned["Gender"].unique() and "Female" in df_cleaned["Gender"].
         st.write("Salary gap could not be calculated.")
 
     # Visualization: Salary Comparison
-    st.subheader("📊 Salary Comparison by Gender")
+    st.subheader(" Salary Comparison by Gender")
     fig, ax = plt.subplots(figsize=(8, 5))
     sns.barplot(x=salary_gap.index, y=salary_gap.values, palette=["pink", "blue"], ax=ax)
     ax.set_title("Average Salary Comparison by Gender")
@@ -75,10 +73,10 @@ if "Male" in df_cleaned["Gender"].unique() and "Female" in df_cleaned["Gender"].
     st.pyplot(fig)
 
 else:
-    st.write("⚠️ Not enough gender data to compute salary gap.")
+    st.write(" Not enough gender data to compute salary gap.")
 
 # --- Women in Leadership Representation ---
-st.subheader("👩‍💼 Women in Leadership Roles")
+st.subheader(" Women in Leadership Roles")
 
 # Define leadership roles to filter
 leadership_roles = [
@@ -109,9 +107,9 @@ if not leadership_gender_count.empty:
     ax2.set_title("Gender Representation in Leadership Roles")
     st.pyplot(fig2)
 else:
-    st.write("⚠️ No leadership data available in the dataset.")
+    st.write(" No leadership data available in the dataset.")
 
 # Footer
 st.markdown("---")
-st.write("🔍 **Developed by:** Jemmimah Kavyu")
-st.write("📅 **Project:** Gender Gap Analysis in Kenya Tech Industry")
+st.write(" **Developed by:** Jemmimah Kavyu")
+st.write(" **Project:** Gender Gap Analysis in Kenya Tech Industry")
